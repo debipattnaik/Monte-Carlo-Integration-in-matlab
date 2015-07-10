@@ -1,0 +1,19 @@
+%function to calculate Montecarlo integration of an exponential function exp(x) between 0 and 1
+%Debi Prasad Pattnaik,Uni of Nottingham
+clc;close all;
+e=exp(1.0);
+rand('state',0); %generating random number with the sequence reproducible
+ssum=0;
+%calculate the function of a total of 1000 times
+%printing an estimate of the integral after every 10 iterations
+for i=1:100
+for j=1:10
+x=rand;
+ssum=ssum+exp(x);
+end
+N=i*10;
+integ=ssum/N;
+%calculate the relative error; from the known value
+err=abs(integ-(e-1.0))/(e-1.0);
+fprintf('N=%6.0f of,integration=%15.12f,error=%15.12f\n',N,integ,err)
+end
